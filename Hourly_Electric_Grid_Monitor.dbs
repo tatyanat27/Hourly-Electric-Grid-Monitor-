@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="Hourly Electric Grid Monitor" database="LogicalDesign" id="LogicalDesign-2269" >
+	<schema name="Hourly Electric Grid Monitor" >
+		<table name="Energy_Source_Dimension" prior="Entity" >
+			<column name="energy_source_key" type="INT" jt="4" mandatory="y" />
+			<column name="energy_source_name" type="VARCHAR" length="20" jt="12" />
+			<column name="energy_source_category" type="VARCHAR" length="10" jt="12" />
+			<column name="energy_source_is_renewable" type="BOOLEAN" jt="-7" />
+			<index name="pk_Energy_Source_Dimension" unique="PRIMARY_KEY" >
+				<column name="energy_source_key" />
+			</index>
+		</table>
+		<table name="Fact_Electricity_Usage" prior="Fact_Electricity" >
+			<column name="fact_electricity_usage_id" type="INT" jt="4" mandatory="y" />
+			<column name="selected_hour_demand_mwh" type="DOUBLE" jt="8" />
+			<column name="prior_hour_demand_mwh" type="DOUBLE" jt="8" />
+			<column name="percent_change_from_prior_hour" type="DOUBLE" jt="8" />
+			<column name="demand_mwh" type="DOUBLE" jt="8" />
+			<column name="demand_forecast_mwh" type="DOUBLE" jt="8" />
+			<column name="net_generation_mwh" type="DOUBLE" jt="8" />
+			<column name="total_interchange_mwh" type="DOUBLE" jt="8" />
+			<column name="CAL_demand_mwh" type="DOUBLE" jt="8" />
+			<column name="CAR_demand_mwh" type="DOUBLE" jt="8" />
+			<column name="CENT_demand_mwh" type="DOUBLE" jt="8" />
+			<column name="FLA_demand_mwh" type="DOUBLE" jt="8" />
+			<column name="MIDA_demand_mwh" type="DOUBLE" jt="8" />
+			<column name="NE_demand_mwh" type="DOUBLE" jt="8" />
+			<column name="NY_demand_mwh" type="DOUBLE" jt="8" />
+			<column name="SE_demand_mwh" type="DOUBLE" jt="8" />
+			<column name="TEN_demand_mwh" type="DOUBLE" jt="8" />
+			<column name="TEX_demand_mwh" type="DOUBLE" jt="8" />
+			<column name="battery_storage_generation_mwh" type="DOUBLE" jt="8" />
+			<column name="wind_battery_storage_generation_mwh" type="DOUBLE" jt="8" />
+			<column name="solar_battery_storage_generation_mwh" type="DOUBLE" jt="8" />
+			<column name="pumped_storage generation_mwh" type="DOUBLE" jt="8" />
+			<column name="other_energy_storage_generation_mwh" type="DOUBLE" jt="8" />
+			<column name="unknown_energy_storage_generation_mwh" type="DOUBLE" jt="8" />
+			<column name="wind_generation_mwh" type="DOUBLE" jt="8" />
+			<column name="solar_generation_mwh" type="DOUBLE" jt="8" />
+			<column name="hydro_generation_mwh" type="DOUBLE" jt="8" />
+			<column name="geothermal_generation_mwh" type="DOUBLE" jt="8" />
+			<column name="unknown_generation_mwh" type="DOUBLE" jt="8" />
+			<column name="other_generation_mwh" type="DOUBLE" jt="8" />
+			<column name="petroleum_generation_mwh" type="DOUBLE" jt="8" />
+			<column name="natural_gas_generation_mwh" type="DOUBLE" jt="8" />
+			<column name="coal_generation_mwh" type="DOUBLE" jt="8" />
+			<column name="nuclear_generation_mwh" type="DOUBLE" jt="8" />
+			<column name="canada_interchange_mwh" type="DOUBLE" jt="8" />
+			<column name="mexico_interchange_mwh" type="DOUBLE" jt="8" />
+			<column name="time_key" prior="time_key_fk" type="INT" jt="4" />
+			<column name="region_key" type="INT" jt="4" mandatory="y" />
+			<index name="pk_Fact_Electricity_Usage" unique="PRIMARY_KEY" >
+				<column name="fact_electricity_usage_id" />
+			</index>
+			<index name="unq_region_key" unique="UNIQUE_INDEX" >
+				<column name="region_key" />
+			</index>
+			<fk name="fk_Fact_Electricity_Usage_Region_Dimension" to_schema="Hourly Electric Grid Monitor" to_table="Region_Dimension" type="NonIdentifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="region_key" pk="region_key" />
+			</fk>
+			<fk name="fk_Fact_Electricity_Usage_Time_Dimension" to_schema="Hourly Electric Grid Monitor" to_table="Time_Dimension" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="time_key" pk="time_key" />
+			</fk>
+		</table>
+		<table name="Region_Dimension" prior="region_" >
+			<column name="region_key" type="INT" jt="4" mandatory="y" />
+			<column name="region_code" type="VARCHAR" length="5" jt="12" />
+			<column name="region_type" type="VARCHAR" length="3" jt="12" />
+			<column name="region_name" type="VARCHAR" length="15" jt="12" />
+			<index name="pk_Region_Dimension" unique="PRIMARY_KEY" >
+				<column name="region_key" />
+			</index>
+		</table>
+		<table name="Time_Dimension" prior="Time" >
+			<column name="time_key" type="DOUBLE" jt="8" mandatory="y" />
+			<column name="time_stamp" type="DATETIME" jt="93" />
+			<column name="time_year_number" type="INT" jt="4" />
+			<column name="time_month_number" type="INT" jt="4" />
+			<column name="time_month_name" type="VARCHAR" length="20" jt="12" />
+			<column name="time_week_of_the_month" type="INT" jt="4" />
+			<column name="time_day_number" type="INT" jt="4" />
+			<column name="time_day_name" type="VARCHAR" length="20" jt="12" />
+			<column name="time_hour" type="INT" jt="4" />
+			<column name="time_zone" type="CHAR" length="3" jt="1" >
+				<comment><![CDATA[EST, PT (time zone)]]></comment>
+			</column>
+			<column name="time_holiday" type="BOOLEAN" jt="-7" />
+			<column name="time_weekend" type="BOOLEAN" jt="-7" />
+			<index name="pk_Time_Dimension" unique="PRIMARY_KEY" >
+				<column name="time_key" />
+			</index>
+		</table>
+	</schema>
+	<layout name="Default Diagram" id="Diagram-1439" show_relation="columns" >
+		<entity schema="Hourly Electric Grid Monitor" name="Energy_Source_Dimension" color="C1D8EE" x="60" y="140" />
+		<entity schema="Hourly Electric Grid Monitor" name="Fact_Electricity_Usage" color="C1D8EE" x="420" y="60" />
+		<entity schema="Hourly Electric Grid Monitor" name="Region_Dimension" color="EEE3C1" x="100" y="520" />
+		<entity schema="Hourly Electric Grid Monitor" name="Time_Dimension" color="C1EEE4" x="880" y="180" />
+	</layout>
+</project>
