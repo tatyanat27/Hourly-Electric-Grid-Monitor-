@@ -6,6 +6,7 @@ March 31, 2025
 Professor Jefferson Bien-Aime
 
 Title: Hourly Electric Grid Monitor 
+
 Data Source: https://www.eia.gov/electricity/gridmonitor/dashboard/custom/pending
 
 Business Requirements:
@@ -90,12 +91,9 @@ Information Flow:
 Brief Description: 
 The information will start at the source, that being the EIA Open Data API, from which the data will be extracted from. The data would then be stored in a temporary storage to ensure pipeline structure. Once extracted from the temporary storage, the data then will be cleaned and reformatted for proper and consistent use. Once things like missing values or misalignments are handled, then the data can be transformed. The data will then be stored in a centralized data warehouse. The users would interact with the data through dashboards, reports, and other tools that will be built on top of the warehouse for analysis and forecasting purposes. The data will be accessed by individuals mentioned earlier. 
 
-Diagram: 
-
+Diagram: attached 
 
 Data Architecture: Will use Bottom Up Approach 
-
-
 
 Data Integration Points: 
 The main integration point is the EIA API, which is the source. It will retrieve the needed metrics. 
@@ -118,4 +116,4 @@ The data warehouse will be implemented on a cloud (Azure), which would allow sca
 
 
 Dimensional Modeling 
-
+For dimensional modeling, I will use a big (wide) fact table, two dimensions, and a reference table (not connected) to be used later with BI tools. I think it is best to keep everything in a wide fact table for easier data retrieval, have a calendar dimension, and a region dimension connected. 
