@@ -5,60 +5,69 @@ CIS 4400
 March 31, 2025
 Professor Jefferson Bien-Aime
 
-Title: Hourly Electric Grid Monitor 
+# Title: Hourly Electric Grid Monitor 
 
 Data Source: https://www.eia.gov/electricity/gridmonitor/dashboard/custom/pending
 
-Business Requirements:
-The goal for this project is to create a tool that can improve grid reliability and planning as well as allow room for analysis of the effectiveness of renewable resources. 
+## Business Requirements:
+The goal for this project is to create a tool that can improve grid reliability and planning as well as allow room for analysis of the effectiveness of renewable resources. It is also a way to see the interchange with neighboring countries and how much electricity the US is sourcing from them. 
 
-The requirements are the following: 
+### 1. Monitor Real Time Regional Electricity Demand to Support Grid Reliability and Planning 
+This tool must help utility companies and grid operators in their daily day to day and also in cases of unusual activities. It will help with analysis of grid reliability. Also, by studying the grid patterns (historical data), this tool can be a great way to plan ahead for energy distribution and for unusual activities like outages based on predictions made from the data. 
 
-Monitor Real Time Regional Electricity Demand to Support Grid Reliability and Planning 
-This tool must help utility companies and grid operators in their daily day to day and also in cases of unusual activities. 
+#### The following are specific guidelines and questions that should be answered using the tool for meaningful analysis: 
 - The tool should be able to track how much energy people are using hour by hour by region and by energy source. 
 - Comparison analysis should be easily done to see how well distributed the energy is across all regions. 
 - Analysis must be done for spikes in demand and record the patterns before those spikes happen.
-- Is it seasonal? 
- - What time of day do the spikes happen? 
- - What day of the week do the spikes happen? 
- -Do some regions have more spikes than others? 
-- How can we use this data to better prepare for spikes? 
+  - Is it seasonal? 
+  - What time of day do the spikes happen? 
+  - What day of the week do the spikes happen? 
+  - Do some regions have more spikes than others? 
+- How can we use this data to better prepare for spikes?
+- How much of the demand in US is satisfied from generation of neighboring countries like Canada and Mexico?
+  - What percent of energy use in the US comes from Canada? What about Mexico? What about the total of both in comparison to inhouse generation?
+    - We can analyze how much the US relies on neighboring countries for its energy generation per region. 
 - This tool must be able to use historical analysis of demand trends and generation trends for the purposes of forecasting usage and being better prepared to deliver consistent service. 
-- Analyze the Impact of Renewable Energy Sources vs Non-renewable Energy Sources
+
+### 2. Analyze the Impact of Renewable Energy Sources vs Non-renewable Energy Sources
+This tool must also help utility companies, government agencies, investors, the general public to be able to see how different energy resources are being used and generated. It is a great way to track the reliability of renewable resources and analyze the historical data to be able to project future use and encourage enthusiasm and confidence in cleaner energy sources. 
+
+#### The following are specific guidelines and questions that should be answered using the tool for meaningful analysis: 
 - This tool must be able to track hourly contributions of renewable resources as well as non-renewable resources. 
-- That includes solar, wind, hydro, nuclear, coal, fossil fuel
+  - That includes solar, wind, hydro, nuclear, coal, fossil fuel
 - This tool should be able to track the energy source and its impact on energy generation. 
-- Which source is generating the most energy? 
-- Which source generation meets the demands the most frequent?
+  - Which source is generating the most energy? 
+  - Which source generation meets the demands the most frequent?
 - Are renewable sources reliable? 
-- How much are renewable sources fluctuating during the day? Week? Month? Year? 
-- How much are non-renewable sources fluctuating during the day? Week? Month? Year? 
+  - How much are renewable sources fluctuating during the day? Week? Month? Year? 
+  - How much are non-renewable sources fluctuating during the day? Week? Month? Year? 
 - This tool should help in analysis of reliability of renewable and non-renewable sources by region. 
 
-Functional Requirements: 
+## Functional Requirements: 
 
-Reliability and Planning 
+### 1. Reliability and Planning 
 - The system must be able to retrieve hourly electricity demand and generation via EIA API. 
 - The system must be able to have filters and visualizations of usage demands by regions. 
-- The system must be able to have filters and visualizations of generation of energy by regions. 
+- The system must be able to have filters and visualizations of generation of energy by regions.
+- The system must be able to have filters and visualizations of generation of energy by neighboring countries.
 - The system must have the ability to generate forecasts that show which regions need more energy using patterns discovered in historical data.
   
-Renewable Energy Analysis 
+### 2. Renewable Energy Analysis 
 - The system must be able to retrieve hourly electricity demand by region via EIA API as well for this business requirement 
 - The system must also be able to extract the hourly generation of electricity by energy source (renewable vs nonrenewable, so wind, solar, coal, fossil fuel, etc)
 - The system should be able to do comparison calculations. 
-- How much energy was generated by renewable sources vs non-renewable sources out of the total. 
+  - How much energy was generated by renewable sources vs non-renewable sources out of the total. 
 
 
-Data Requirements: 
+## Data Requirements: 
 
-Data Sourcing
-This system is designed to monitor and forecast electricity demand with the purpose to analyze grid reliability and renewable energy performance. It can also be used as a tool to predict electricity usage for the purposes of better planning, especially for times of spikes in usage, as previous patterns can be observed. I will be using a Web API for this project. 
+### Data Sourcing
+This system is designed to monitor and forecast electricity demand with the purpose to analyze grid reliability and renewable energy performance. It can also be used as a tool to predict electricity usage for the purposes of better planning, especially for times of spikes in usage, as previous patterns can be observed. I will be using a Web API for this project to source data from: https://www.eia.gov/electricity/gridmonitor/dashboard/custom/pending.
 
-Information Architecture: 
+## Information Architecture: 
+The system for this project will retrieve hourly electricity data using an API to show hourly demand, generations, and also the interchange between neighboring countries. That data will be temporarily stored before going into data marts and ultimately into a final database from where the users will be able to interact with the data for analysis to answer the business requirements. The specifics of the information architecture are outlined below. 
 
-The Business Processes and Functions Supported: 
+### The Business Processes and Functions Supported: 
 - Monitoring real-time electric demand across US regions 
 - Monitoring real-time electric supply (generation) across US regions 
 - Monitoring real-time electric demand by energy source
@@ -66,55 +75,66 @@ The Business Processes and Functions Supported:
 - Forecast electricity demand based on historical data
 - Forecast electricity spikes based on historical data 
 
-The Types of Analytics Needed: 
+### The Types of Analytics Needed: 
 - Tracking/Monitoring Analytics: tracking real-time demands and generations per region and per energy source 
 - Predictive Analytics: To maintain the grid effectively, we need to track historical data and predict electricity demand
 - Comparative Analytics: The goal is to evaluate performance of renewable energy across regions vs traditional non-renewable sources 
 
-Types of Decisions Affected:
-This will effect possibly the day to day operations to ensure an effectively maintained grid and also for managing spikes in energy use
-Budgeting for energy production and distribution across the different regions 
-This will also affect infrastructure investment decisions depending on the analysis of the renewable vs non-renewable sources 
+### Types of Decisions Affected:
+This will effect possibly the day to day operations to ensure an effectively maintained grid and also for managing spikes in energy use budgeting for energy production and distribution across the different regions. This will also affect infrastructure investment decisions depending on the analysis of the renewable vs non-renewable sources 
 
-The People Who Have Access: 
-- The Data Engineers: The professionals who manage the pipelines and do all of the maintenance would need to have full access. 
-- Energy Data Analysts: These professionals would be able to use the data to analyze the historical trends and usage. They could generate reports/dashboards in regards to the effectiveness on the grid and also the performance of the different energy sources. This could help with research in renewable energy. 
-- Grid operators: They would be able to monitor real time demand data and monitor the grid stability. In addition, they will have access to reports, dashboards, alerts, live data in order to better understand the electric usage, especially during events like spikes and blackouts. 
-- Policy Makers: Having access to this data will help the people in charge make more informed choices on infrastructure decisions and investments with forecasts that use historical data. 
+### The People Who Have Access: 
+- **The Data Engineers**: The professionals who manage the pipelines and do all of the maintenance would need to have full access. 
+- **Energy Data Analysts**: These professionals would be able to use the data to analyze the historical trends and usage. They could generate reports/dashboards in regards to the effectiveness on the grid and also the performance of the different energy sources. This could help with research in renewable energy. 
+- **Grid operators**: They would be able to monitor real time demand data and monitor the grid stability. In addition, they will have access to reports, dashboards, alerts, live data in order to better understand the electric usage, especially during events like spikes and blackouts. 
+- **Policy Makers**: Having access to this data will help the people in charge make more informed choices on infrastructure decisions and investments with forecasts that use historical data. 
 
-The Data Source, Integration, and Consumption: 
-- Data Source: EIA Open Data API
-- Integration: Data will be extracted using the API and moved through the data pipeline of gathering, storing, extracting, cleaning, reformatting, transforming, and loading into the data warehouse 
-- Consumption: The data will be presented using BI tools, PowerBI to be specific, that will support real time monitoring of data and also historical data for forecasting. 
+### The Data Source, Integration, and Consumption: 
+- **Data Source**: EIA Open Data API
+- **Integration**: Data will be extracted using the API and moved through the data pipeline of gathering, storing, extracting, cleaning, reformatting, transforming, and loading into the data warehouse 
+- **Consumption**: The data will be presented using BI tools, PowerBI to be specific, that will support real time monitoring of data and also historical data for forecasting. 
 
 
-Information Flow:
-Brief Description: 
+### Information Flow:
+#### Brief Description: 
 The information will start at the source, that being the EIA Open Data API, from which the data will be extracted from. The data would then be stored in a temporary storage to ensure pipeline structure. Once extracted from the temporary storage, the data then will be cleaned and reformatted for proper and consistent use. Once things like missing values or misalignments are handled, then the data can be transformed. The data will then be stored in a centralized data warehouse. The users would interact with the data through dashboards, reports, and other tools that will be built on top of the warehouse for analysis and forecasting purposes. The data will be accessed by individuals mentioned earlier. 
 
-Diagram: attached 
+### Diagram: 
+![Screenshot 2025-04-11 at 10 44 43 PM](https://github.com/user-attachments/assets/0d81439e-587f-40d3-9589-1f4e8fe9c6bf)
 
-Data Architecture: Will use Bottom Up Approach 
+## Data Architecture: The Bottom Up Approach 
 
-Data Integration Points: 
+### Diagram:
+![Screenshot 2025-04-11 at 10 46 46 PM](https://github.com/user-attachments/assets/78fbfa66-9923-4842-97b8-0f5bd87ac473)
+
+### Data Integration Points: 
 The main integration point is the EIA API, which is the source. It will retrieve the needed metrics. 
 - Hourly electricity demand by region 
 - Hourly electricity demand by source 
 - Hourly electricity generation by region 
 - Hourly electricity generation by source
 
-Ensuring Consistency: 
+### Ensuring Consistency: 
 The use of foreign keys like region codes, time stamps, and surrogate keys
 
-Ensuring Integrity: 
+### Ensuring Integrity: 
 - The data will go from temporary storage into a staging area where some basic cleaning and missing values will be addressed. 
 - The use of surrogate keys will make sure that there is consistency and matching in the star schema. 
 - Relationships will be established between the main fact table and the dimension tables
 
-Ensuring Scalability: 
-Bottom-Up Data Architecture Model will allow for multiple data mart creation and you can add as many as needed. If extra information is needed like carbon emissions to do further analysis on the impact of renewable sources, it can be introduced in a data mart. 
-The data warehouse will be implemented on a cloud (Azure), which would allow scalability. 
+### Ensuring Scalability: 
+Bottom-Up Data Architecture Model will allow for multiple data mart creation and you can add as many as needed. If extra information is needed like carbon emissions to do further analysis on the impact of renewable sources, it can be introduced in a data mart. The data warehouse will be implemented on a cloud (Azure), which would allow scalability. 
 
 
-Dimensional Modeling 
+## Dimensional Modeling 
 For dimensional modeling, I will use a big (wide) fact table, two dimensions, and a reference table (not connected) to be used later with BI tools. I think it is best to keep everything in a wide fact table for easier data retrieval, have a calendar dimension, and a region dimension connected. 
+
+### The Star Schema Diagram: 
+![Screenshot 2025-04-11 at 10 48 48 PM](https://github.com/user-attachments/assets/9e1b26db-d299-45b0-8a55-47ebafb7bb6e)
+
+
+
+
+
+
+
