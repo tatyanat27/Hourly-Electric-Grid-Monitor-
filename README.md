@@ -130,8 +130,7 @@ Bottom-Up Data Architecture Model will allow for multiple data mart creation and
 For dimensional modeling, I will use a big (wide) fact table, two dimensions, and a reference table (not connected) to be used later with BI tools. I think it is best to keep everything in a wide fact table for easier data retrieval, have a calendar dimension, and a region dimension connected. 
 
 ### The Star Schema Diagram: 
-![Screenshot 2025-04-11 at 10 48 48 PM](https://github.com/user-attachments/assets/9e1b26db-d299-45b0-8a55-47ebafb7bb6e)
-
+<img width="1125" alt="Screenshot 2025-05-08 at 1 20 07 PM" src="https://github.com/user-attachments/assets/cf2f12a8-997c-40c7-a9a5-a45d90b319a9" />
 
 
 
