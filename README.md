@@ -10,7 +10,7 @@ Professor Jefferson Bien-Aime
 Data Source: https://www.eia.gov/electricity/gridmonitor/dashboard/custom/pending
 
 ## Business Requirements:
-The goal for this project is to create a tool that can improve grid reliability and planning as well as allow room for analysis of the effectiveness of renewable resources. It is also a way to see the interchange with neighboring countries and how much electricity the US is sourcing from them. 
+The goal for this project is to create a tool that can improve grid reliability and planning as well as allow room for analysis of the effectiveness of renewable resources. 
 
 ### 1. Monitor Real Time Regional Electricity Demand to Support Grid Reliability and Planning 
 This tool must help utility companies and grid operators in their daily day to day and also in cases of unusual activities. It will help with analysis of grid reliability. Also, by studying the grid patterns (historical data), this tool can be a great way to plan ahead for energy distribution and for unusual activities like outages based on predictions made from the data. 
@@ -20,14 +20,10 @@ This tool must help utility companies and grid operators in their daily day to d
 - Comparison analysis should be easily done to see how well distributed the energy is across all regions. 
 - Analysis must be done for spikes in demand and record the patterns before those spikes happen.
   - Is it seasonal? 
-  - What time of day do the spikes happen? 
   - What day of the week do the spikes happen? 
   - Do some regions have more spikes than others? 
 - How can we use this data to better prepare for spikes?
 - How much of the demand in US is satisfied from generation of neighboring countries like Canada and Mexico?
-  - What percent of energy use in the US comes from Canada? What about Mexico? What about the total of both in comparison to inhouse generation?
-    - We can analyze how much the US relies on neighboring countries for its energy generation per region. 
-- This tool must be able to use historical analysis of demand trends and generation trends for the purposes of forecasting usage and being better prepared to deliver consistent service. 
 
 ### 2. Analyze the Impact of Renewable Energy Sources vs Non-renewable Energy Sources
 This tool must also help utility companies, government agencies, investors, the general public to be able to see how different energy resources are being used and generated. It is a great way to track the reliability of renewable resources and analyze the historical data to be able to project future use and encourage enthusiasm and confidence in cleaner energy sources. 
@@ -39,8 +35,8 @@ This tool must also help utility companies, government agencies, investors, the 
   - Which source is generating the most energy? 
   - Which source generation meets the demands the most frequent?
 - Are renewable sources reliable? 
-  - How much are renewable sources fluctuating during the day? Week? Month? Year? 
-  - How much are non-renewable sources fluctuating during the day? Week? Month? Year? 
+  - How much are renewable sources fluctuating during the day? Month? Year? 
+  - How much are non-renewable sources fluctuating during the day? Month? Year? 
 - This tool should help in analysis of reliability of renewable and non-renewable sources by region. 
 
 ## Functional Requirements: 
@@ -49,7 +45,6 @@ This tool must also help utility companies, government agencies, investors, the 
 - The system must be able to retrieve hourly electricity demand and generation via EIA API. 
 - The system must be able to have filters and visualizations of usage demands by regions. 
 - The system must be able to have filters and visualizations of generation of energy by regions.
-- The system must be able to have filters and visualizations of generation of energy by neighboring countries.
 - The system must have the ability to generate forecasts that show which regions need more energy using patterns discovered in historical data.
   
 ### 2. Renewable Energy Analysis 
