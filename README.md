@@ -1,9 +1,6 @@
 # Hourly-Electric-Grid-Monitor-
 
 Tatyana Titova 
-CIS 4400
-March 31, 2025
-Professor Jefferson Bien-Aime
 
 # Title: Hourly Electric Grid Monitor 
 
